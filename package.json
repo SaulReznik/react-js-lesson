@@ -1,0 +1,22 @@
+{
+  "name": "react-js-lesson",
+  "version": "1.0.0",
+  "description": "Learning React Js with Mike.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roberthovhannsiyan/react-js-lesson.git"
+  },
+  "author": "Robert Hovhannisyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roberthovhannsiyan/react-js-lesson/issues"
+  },
+  "homepage": "https://github.com/roberthovhannsiyan/react-js-lesson#readme",
+  "dependencies": {
+    "react": "^15.5.4"
+  }
+}
