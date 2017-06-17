@@ -8,12 +8,22 @@ class List extends Component {
       value: ''
     };
   }
-  handleButtonClick = (e) => {
+  handleButtonClick = () => {
     const { list } = this.state;
     list.push({name: this.state.value, checked: false});
     this.setState({
-      list
+      list,
+      value:''
     })
+  };
+
+  handleCheckBoxClick = (boolean, index) => {
+    const { list } = this.state;
+
+    list[index].checked = boolean;
+    this.setState({
+      list
+    });
   };
   render() {
     return (
@@ -22,8 +32,8 @@ class List extends Component {
           <ul>
             {this.state.list.map((elem, i) => {
               return (
-                <li key={i} style={{ textDecoration: this.state.checked.includes(i) ? "line-through" : "none" }}>
-                  <input type="checkbox" />{elem.name}
+                <li key={i} style={{ textDecoration: elem.checked ? "line-through" : "none" }}>
+                  <input type="checkbox" onClick={(e) => this.handleCheckBoxClick(e.target.checked, i)}/>{elem.name}
                 </li>
               );
             })}
