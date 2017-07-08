@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Comment from './Comment.js';
 import CommentsTitle from './CommentsTitle.js';
 import CommentsToggle from './CommentsToggle.js';
 import ReactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
+import firebase from './firebase';
 
 export default class CommentsList extends React.Component {
   constructor() {
@@ -16,8 +16,8 @@ export default class CommentsList extends React.Component {
     }
   }
 
-  componentDidMount() {
-      this.bindAsArray(firebase.database().ref().child('comments'),
+  componentWillMount() {
+    this.bindAsArray(firebase.database().ref().child('comments'),
       'comments');
   }
 
@@ -27,27 +27,25 @@ export default class CommentsList extends React.Component {
     })
   }
 
-  render () {
-    console.log(this.state);
-
+  render() {
     const commentsCount = this.state.comments.length;
     let commentsList;
     if (commentsCount > 0 && this.state.showComments) {
-        commentsList = <ul className="comments-list">
+      commentsList = <ul className="comments-list">
         {
           this.state.comments.map((comment, index) => {
-            return <Comment key={index} author = {comment.name} text = {comment.text} />
+            return <Comment key={index} author={comment.author} id={comment['.key']} text={comment.text}/>
           })
         }
-          </ul>
+      </ul>
     }
 
-    return(
+    return (
       <div className="comments-body">
-          <CommentsTitle counter={commentsCount} />
-          <CommentsToggle toggleComments={this._toggleShowComments.bind(this)} isShow={this.state.showComments} />
-                 {commentsList}
-             </div>
+        <CommentsTitle counter={commentsCount}/>
+        <CommentsToggle toggleComments={this._toggleShowComments.bind(this)} isShow={this.state.showComments}/>
+        {commentsList}
+      </div>
 
     )
   }

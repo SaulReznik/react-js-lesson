@@ -1,27 +1,22 @@
-import React, {Component} from 'react';
-  import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CommentsList from './components/CommentsList.js';
+import CommentsForm from './components/CommentsForm.js';
 
-let test = document.getElementById('test')
 
-class Comment  extends Component {
-  constructor(props) {
 
-  }
 
+class MainComponent extends React.Component {
   render () {
-    return(
-      <div>
-        TESTING
+    return (
+      <div className="comments-box">
+        <CommentsForm />
+        <CommentsList />
       </div>
     )
-
   }
 }
 
-ReactDOM.render(
-  <Comment/>,document.getElementById('app')
+ReactDOM.render (
+  <MainComponent />, document.getElementById('app')
 )
-
-/*To Do
-   1.sarqem component,vory postCommit input sexmeluc render kani comments-body divum, comments-list ul-um kavelacni comment
-   2.hly vor etqany...
