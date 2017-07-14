@@ -6,22 +6,27 @@ export default class CommentsForm extends React.Component {
     super(props);
     this.state = {
       author: '',
-      text: ''
+      text: '',
+      answer: {
+        name: '',
+        aText: ''
+      }
     };
   }
 
   setData = (e) => {
     e.preventDefault();
-    const {author, text} = this.state;
+    const {author, text, answer} = this.state;
 
     firebase.database().ref().child('comments').push({
       author,
-      text
+      text,
+      answer
     })
   };
 
   render() {
-    const {author, text} = this.state;
+    const {author, text, answer} = this.state;
     return (
       <form className="comments-form" onSubmit={this.setData}>
         <label htmlFor="author">Author</label>
