@@ -22362,6 +22362,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactDom = __webpack_require__(38);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
 	var _firebase = __webpack_require__(187);
 	
 	var _firebase2 = _interopRequireDefault(_firebase);
@@ -22378,11 +22382,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var answer = {
-	  name: '',
-	  aText: ''
-	};
-	
 	var Comment = function (_React$Component) {
 	  _inherits(Comment, _React$Component);
 	
@@ -22397,30 +22396,7 @@
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.addAnswer = function () {
-	      return _react2.default.createElement(
-	        'form',
-	        { className: 'answer' },
-	        _react2.default.createElement(
-	          'label',
-	          { htmlFor: 'answerAuthor' },
-	          'Author'
-	        ),
-	        _react2.default.createElement('input', { type: 'text', id: 'authorAnswer', name: 'authorAnswer', value: answer,
-	          onChange: function onChange(e) {
-	            return _this.setState({ name: e.target.value });
-	          } }),
-	        _react2.default.createElement(
-	          'label',
-	          { htmlFor: 'answerText' },
-	          'Comment'
-	        ),
-	        _react2.default.createElement('textarea', { name: 'answerText', id: 'answerText', value: answer, onChange: function onChange(e) {
-	            return _this.setState({ aText: e.target.value });
-	          } }),
-	        _react2.default.createElement('input', { id: 'postCommit', type: 'submit', value: 'post commit' })
-	      );
-	    }, _this.removeComment = function () {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Comment.__proto__ || Object.getPrototypeOf(Comment)).call.apply(_ref, [this].concat(args))), _this), _this.removeComment = function () {
 	      _firebase2.default.database().ref().child('comments/' + _this.props.id).remove();
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -22428,7 +22404,7 @@
 	  _createClass(Comment, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.state);
+	      console.log(this.props);
 	      return _react2.default.createElement(
 	        'li',
 	        { className: 'comments-item' },
@@ -22449,7 +22425,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'answerButton', onClick: this.addAnswer },
+	          { className: 'answerButton', onClick: this.props.addAnswer },
 	          'answer'
 	        )
 	      );
