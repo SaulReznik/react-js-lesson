@@ -8,6 +8,15 @@ import CommentsForm from './CommentsForm.js';
 
 export default class Comment extends React.Component {
 
+  addAnswer() {
+    return (
+      <div className='answerField'>
+        <input type='text'id='name' name='name' value=''/>
+        <input type='text'id='aText' name='aText' value=''/>
+        <input type='submit' id='answerCommit' name='answerCommit'/>
+      </div>
+    )
+  }
 
   removeComment = () => {
     firebase.database().ref().child('comments/' + this.props.id).remove();

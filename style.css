@@ -205,4 +205,21 @@ button
     opacity: 1;
 }
 
- 
+
+.answerButton
+{
+  font-size: 14px;
+
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+
+  transition: opacity .3s linear;
+  text-decoration: none;
+  letter-spacing: 1px;
+
+  opacity: .7;
+  color: #fff;
+
+  will-change: transform;
+}

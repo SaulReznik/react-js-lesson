@@ -22402,6 +22402,17 @@
 	  }
 	
 	  _createClass(Comment, [{
+	    key: 'addAnswer',
+	    value: function addAnswer() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'answerField' },
+	        _react2.default.createElement('input', { type: 'text', id: 'name', name: 'name', value: '' }),
+	        _react2.default.createElement('input', { type: 'text', id: 'aText', name: 'aText', value: '' }),
+	        _react2.default.createElement('input', { type: 'submit', id: 'answerCommit', name: 'answerCommit' })
+	      );
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      console.log(this.props);
