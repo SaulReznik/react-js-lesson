@@ -1,58 +1,55 @@
-/*import React from 'react';
+import React from 'react';
 import Comment from './Comment.js';
 import CommentsForm from './CommentsForm.js';
-import firebase from './firebase.js';*/
+import firebase from './firebase.js';
 
 export default class CommentAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    let answer = {
-      name:'',
-      aText:''
-    }
+      author: '',
+      text: ''
     };
   }
-
-  setData = (e) => {
-    e.preventDefault();
-    const {author, text, answer} = this.state;
-
-    firebase.database().ref().child('comments').push({
-      name,
-      aText,
-
-    })
-  }
-
   addAnswer = (e) => {
-    return (
-      <form className='answer'>
-          <label htmlFor="answerAuthor">Author</label>
-            <input type="text" id="authorAnswer" name="authorAnswer" value={ answer }
-                   onChange={(e) => this.setState({name: e.target.value})}/>
-                 <label htmlFor="answerText">Comment</label>
-            <textarea name="answerText" id="answerText" value={ answer } onChange={(e) => this.setState({aText: e.target.value})}/>
-            <input id="postCommit" type="submit" value="post commit"/>
-      </form>
-    )
-  }
+    e.preventDefault();
+    const { author, text } = this.state;
+    let { answers } = this.props;
 
-  removeComment = () => {
-    firebase.database().ref().child('comments/' + this.props.id).remove();
+    if(answers) {
+      answers.push({
+        author,
+        text
+      })
+    } else {
+      answers = [{
+        author,
+        text
+      }]
+    }
+    firebase.database().ref().child('comments/' + this.props.id).set({
+      author: this.props.author,
+      text: this.props.text,
+      answers
+    })
   };
-
   render() {
-    console.log(this.state);
     return (
-      <li className="comments-item">
-          <h3>
-              {this.props.author}
-              <a className='deleteButton' onClick={this.removeComment}>delete</a>
-          </h3>
-          <p>{this.props.text}</p>
-          <a className='answerButton' onClick={this.addAnswer}>answer</a>
-      </li>
+      <form  onSubmit={this.addAnswer} className='answerField'>
+        <input type='text'
+               id='author'
+               name='author'
+               value={this.state.author}
+               onChange={(e) => this.setState({author: e.target.value})}
+        />
+        <input type='text'
+               id='text'
+               name='text'
+               value={this.state.text}
+               onChange={(e) => this.setState({text: e.target.value})}
+        />
+        <input type='submit' id='answerCommit' name='answerCommit'/>
+      </form>
     )
   }
 }

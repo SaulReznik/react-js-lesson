@@ -34,7 +34,7 @@ export default class CommentsList extends React.Component {
       commentsList = <ul className="comments-list">
         {
           this.state.comments.map((comment, index) => {
-            return <Comment key={index} author={comment.author} id={comment['.key']} text={comment.text}/>
+            return <Comment key={index} author={comment.author} id={comment['.key']} text={comment.text} answers={comment.answers} />
           })
         }
       </ul>
